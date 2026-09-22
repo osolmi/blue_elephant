@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>블루엘리펀트</title>
+    <!-- 1. Google Fonts - Chivo Mono 웹폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="./scripts/index.js" defer></script>
+</head>
+<body>
+    <!-- ============ Header ============ -->
+    <header class="nav">
+        <a href="#" class="nav__logo"><img src="./images/logo_s.png" alt=""></a>
+        <div class="nav__right">
+            <nav class="nav__links">
+                <a href="#shop">Shop</a>
+                <a href="#new">New</a>
+                <a href="#about">About</a>
+            </nav>
+            <div class="nav__icons">
+                <button class="icon-btn" aria-label="계정">
+                    <img src="./images/icon_user.png" alt="">
+                </button>
+                <button class="icon-btn" aria-label="장바구니">
+                    <img src="./images/icon_bag.png" alt="">
+                </button>
+                <button class="icon-btn" aria-label="검색">
+                    <img src="./images/icon_search.png" alt="">
+                </button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- ============ Hero ============ -->
+        <section class="hero" style="background-image:url('./images/hero.jpg'); background-size:cover; background-position:center;">
+            <div class="hero__content">
+                <h1 class="hero__title"><img src="./images/logo.png" alt=""></h1>
+                <p class="hero__cord">SEOUL, KOREA — 37° 33' 58.97" N, 126° 58' 39.78" E</p>
+            </div>
+            <span class="hero__caption hero__caption--left">CONTEMPORARY EYEWEAR</span>
+            <span class="hero__caption hero__caption--right">BLUE ELEPHANT®</span>
+        </section>
+        <!-- ============ Bestsellers ============ -->
+        <section class="section bestsellers">
+            <div class="bestsellers__grid">
+                <div class="bestsellers__feature" style="background-image:url('./images/bs.png'); background-size:cover; background-position:center;"></div>
+                <div class="bestsellers__body">
+                    <div class="bestsellers__head">
+                        <div>
+                            <p class="section-index">01 / BESTSELLERS</p>
+                            <div class="tab-group">
+                                <button class="tab is-active bracket__wrap" data-tab="sunglasses"><span class="bracket">[</span> SUNGLASSES <span class="bracket">]</span></button>
+                                <button class="tab bracket__wrap" data-tab="glasses"><span class="bracket">[</span> GLASSES <span class="bracket">]</span></button>
+                            </div>
+                        </div>
+                        <a href="#shop" class="see-more">SEE MORE<img class="arrow" src="./images/arrow.png" alt="arrow"></a>
+                    </div>
+
+                    <div class="product-row">
+                        <a href="#shop" class="product-card">
+                            <div class="product-card__img"><img src="./images/products/LOOM grey.png" alt=""></div>
+                            <p class="product-card__name">LOOM grey</p>
+                            <p class="product-card__price">49,900₩</p>
+                        </a>
+                        <a href="#shop" class="product-card">
+                            <div class=" product-card__img"><img src="./images/products/LOOM grey.png" alt=""></div>
+                            <p class="product-card__name">LOOM grey</p>
+                            <p class="product-card__price">49,900₩</p>
+                        </a>
+                        <a href="#shop" class="product-card">
+                            <div class=" product-card__img"><img src="./images/products/LOOM grey.png" alt=""></div>
+                            <p class="product-card__name">LOOM grey</p>
+                            <p class="product-card__price">49,900₩</p>
+                        </a>
+                    </div>
+
+                    <div class="dots">
+                        <span class="dot is-active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============ Editorial split (2-up) — 시안 3(hover reveal)으로 통일 ============ -->
+        <section class="editorial-split">
+            <a href="#shop" class="editorial-tile editorial-tile--hover">
+                <div class=" editorial-split__img"></div>
+                <div class="editorial-tile__scrim"></div>
+                <div class="editorial-tile__content">
+                    <p class="editorial-tile__label">SUNGLASSES</p>
+                    <p class="editorial-tile__cta"><span class="bracket">[</span> VIEW ALL <span class="arrow">→</span> <span class="bracket">]</span></p>
+                </div>
+            </a>
+
+            <a href="#shop" class="editorial-tile editorial-tile--hover">
+                <div class=" editorial-split__img"></div>
+                <div class="editorial-tile__scrim"></div>
+                <div class="editorial-tile__content">
+                    <p class="editorial-tile__label">GLASSES</p>
+                    <p class="editorial-tile__cta"><span class="bracket">[</span> VIEW ALL <span class="arrow">→</span> <span class="bracket">]</span></p>
+                </div>
+            </a>
+        </section>
+
+        <!-- ============ Discover / Category ============ -->
+        <section class="section discover">
+            <div class="discover__grid">
+                <!-- 좌측 대형 이미지 (100vh 고정) -->
+                <div class="discover__feature" style="background-image:url('./images/col_big.jpg'); background-size:cover; background-position:center;"></div>
+
+                <!-- 우측 컨텐츠 영역 -->
+                <div class="discover__body">
+                    <!-- [첫 화면 100vh 뷰: 01 + 02 영역] -->
+                    <div class="discover__hero-view">
+                        <div class="discover__top">
+                            <div class="discover__index">
+                                <a href="#shop" class="discover-all bracket__wrap">
+                                    <span class="bracket">[</span>
+                                    DISCOVER ALL
+                                    <img class="arrow" src="./images/arrow.png" alt="arrow">
+                                    <span class="bracket">]</span>
+                                </a>
+                                <p class="section-index">03 / COLLECTION</p>
+                            </div>
+                            <div class="spotlight spotlight--01">
+                                <span class="spotlight__index">[ 01 ]</span>
+                                <div class="spotlight__img1" style="background-image:url('./images/col_1.jpg'); background-size:cover; background-position:center;"></div>
+                                <div class="spotlight__info">
+                                    <p class="spotlight__name">FLUXO</p>
+                                    <p class="spotlight__variant">pearl black</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="spotlight spotlight--02">
+                            <span class="spotlight__index">[ 02 ]</span>
+                            <div class="spotlight__img2" style="background-image:url('./images/col_2.jpg'); background-size:cover; background-position:center;"></div>
+                            <div class="spotlight__info">
+                                <p class="spotlight__name">LOOM</p>
+                                <p class="spotlight__variant">grey</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- [스크롤 시 내려오는 카테고리 영역] -->
+                    <div class="category">
+                        <div class="category-head">
+                            <div>
+                                <div class="tab-group">
+                                    <button class="tab is-active bracket__wrap" data-tab="sunglasses2"><span class="bracket">[</span> SUNGLASSES <span class="bracket">]</span></button>
+                                    <button class="tab bracket__wrap" data-tab="glasses2"><span class="bracket">[</span> GLASSES <span class="bracket">]</span></button>
+                                </div>
+                            </div>
+                            <a href="#shop" class="see-more">SEE MORE<img class="arrow" src="./images/arrow.png" alt=""></a>
+                        </div>
+
+                        <div class="category-grid">
+                            <a href="#" class="product-card">
+                                <div class=" product-card__img"></div>
+                                <p class="product-card__name">LOOM grey</p>
+                                <p class="product-card__price">49,900₩</p>
+                            </a>
+                            <a href="#" class="product-card">
+                                <div class=" product-card__img"></div>
+                                <p class="product-card__name">LOOM grey</p>
+                                <p class="product-card__price">49,900₩</p>
+                            </a>
+                            <a href="#" class="product-card">
+                                <div class=" product-card__img"></div>
+                                <p class="product-card__name">LOOM grey</p>
+                                <p class="product-card__price">49,900₩</p>
+                            </a>
+                            <a href="#" class="product-card">
+                                <div class=" product-card__img"></div>
+                                <p class="product-card__name">LOOM grey</p>
+                                <p class="product-card__price">49,900₩</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- ============ Footer ============ -->
+    <footer class="footer">
+        <div class="footer__top">
+            <div>
+                <p class="footer__label">01 / CLIENT SERVICE</p>
+                <div class="footer__links">
+                    <a href="#">[NOTICE]</a>
+                    <a href="#">[Q&A]</a>
+                    <a href="#">[HOW TO SHOP]</a>
+                    <a href="#">[REVIEW]</a>
+                </div>
+            </div>
+            <div>
+                <p class="footer__label">02 / COMPANY</p>
+                <div class="footer__links">
+                    <a href="#">[ABOUT]</a>
+                    <a href="#">[TERMS OF USE]</a>
+                    <a href="#">[PRIVACY POLICY]</a>
+                    <a href="#">[RECRUIT]</a>
+                </div>
+            </div>
+            <div>
+                <p class="footer__label">03 / SOCIAL</p>
+                <div class="footer__links">
+                    <a href="#">[INSTAGRAM]</a>
+                    <a href="#">[X]</a>
+                    <a href="#">[TIKTOK]</a>
+                </div>
+            </div>
+            <div class="footer__wordmark"><img src="./images/logo_footer.png" alt="logo"></div>
+        </div>
+        <div class="footer__bottom">
+            <span>© 2026 BLUE ELEPHANT</span>
+            <span>ALL RIGHTS RESERVED</span>
+        </div>
+    </footer>
+    <!-- ============ Fixed widget: dark mode + recently viewed ============ -->
+    <div class="fab" id="fab">
+        <div class="fab__toggle" id="themeToggle" role="switch" aria-checked="false" aria-label="다크모드 전환">
+            <span class="fab__toggle-icon fab__toggle-icon--sun">
+                <img src="./images/icon_sun.png" alt="sun">
+            </span>
+            <span class="fab__toggle-knob"></span>
+            <span class="fab__toggle-icon fab__toggle-icon--moon">
+                <img src="./images/icon_moon_off.png" alt="moon">
+            </span>
+        </div>
+
+        <p class="fab__label">Recently<br>Viewed</p>
+
+        <div class="fab__list" id="fabList">
+            <a href="#" class="fab__item">
+                <div class=" fab__item-img"></div>
+                <p class="fab__item-name">LOOM grey</p>
+                <p class="fab__item-price">49,900₩</p>
+            </a>
+            <a href="#" class="fab__item">
+                <div class=" fab__item-img"></div>
+                <p class="fab__item-name">LOOM grey</p>
+                <p class="fab__item-price">49,900₩</p>
+            </a>
+        </div>
+
+        <button class="fab__add" id="fabAdd" aria-label="최근 본 상품 펼치기">
+            <span class="fab__add-icon"></span>
+        </button>
+    </div>
+</body>
+</html>
