@@ -1,13 +1,4 @@
 (function () {
-
-  /* ==========================================================
-     1. 브래킷 링크 자동 래핑
-     [ TEXT ] 형태의 요소를 찾아서 .bracket-link + .bracket-text
-     구조로 만들어준다. HTML에 이미 <span class="bracket">가
-     있는 요소(탭, discover-all, editorial cta)는 가운데 내용만
-     감싸주고, 푸터 링크처럼 순수 텍스트("[INSTAGRAM]")인 요소는
-     처음부터 구조를 만들어준다.
-  ========================================================== */
   function initBracketLinks() {
 
     // Case A — 이미 .bracket 스팬 두 개(여는/닫는 대괄호)를 가진 요소
@@ -99,17 +90,21 @@
     sunglasses: {
       feature: './images/bs.png',
       products: [
-        { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '49,900₩' },
-        { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '49,900₩' },
-        { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '49,900₩' }
+        // { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '₩49,900' },
+        { img: './images/products/GLENDA black semi.png', name: 'GLENDA black semi', price: '₩49,900' },
+        { img: './images/products/RIFT pearl grey.png', name: 'RIFT pearl grey', price: '₩49,900' },
+        { img: './images/products/LEX snow.png', name: 'LEX snow', price: '₩49,900' },
+        { img: './images/products/VIGOR-S black.png', name: 'VIGOR-S black', price: '₩49,900' }
       ]
     },
     glasses: {
-      feature: './images/bs_glasses.png',
+      feature: './images/bs.png',
       products: [
-        { img: './images/products/VIST clear.png', name: 'VIST clear', price: '39,900₩' },
-        { img: './images/products/VIST clear.png', name: 'VIST clear', price: '39,900₩' },
-        { img: './images/products/VIST clear.png', name: 'VIST clear', price: '39,900₩' }
+        { img: './images/products/KIN black.png', name: 'KIN black', price: '₩49,900' },
+        { img: './images/products/LEILA khaki 69,900원.png', name: 'VIST clear', price: '₩69,900' },
+        { img: './images/products/ENZO matte silver.png', name: 'ENZO matte silver', price: '₩69,900' },
+        { img: './images/products/PEPA grey.png', name: 'PEPA grey', price: '₩49,900' },
+        { img: './images/products/NOUS black.png', name: 'NOUS black', price: '₩49,900' }
       ]
     }
   };
@@ -160,10 +155,10 @@
   ========================================================== */
   var categoryData = {
     sunglasses2: [
-      { name: 'LOOM grey', price: '49,900₩' },
-      { name: 'LOOM grey', price: '49,900₩' },
-      { name: 'LOOM grey', price: '49,900₩' },
-      { name: 'LOOM grey', price: '49,900₩' }
+      { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '₩49,900' },
+      { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '₩49,900' },
+      { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '₩49,900' },
+      { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '₩49,900' }
     ],
     glasses2: [
       { name: 'VIST clear', price: '39,900₩' },
