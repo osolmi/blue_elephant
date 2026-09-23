@@ -209,7 +209,6 @@ main {
 .product-card__img img{ width:100%; height:100%; object-fit:cover; display:block; }
 
 /* ============ Bestsellers ============ */
-/* ============ Bestsellers (무한 팽창 방지 완벽 수정본) ============ */
 .bestsellers {
     padding: 0 var(--edge);
     box-sizing: border-box;
@@ -232,27 +231,42 @@ main {
 }
 
 .bestsellers__head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
     margin-bottom: var(--gutter); /* 28px */
 }
+.bestsellers__head-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 탭 메뉴와 SEE MORE가 같은 기준선에 맞춰짐 */
+    margin-top: 0.625rem; /* 10px */
+}
 
-.product-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--gutter);
+/* Swiper: 베스트셀러 상품 캐러셀 (한 슬라이드에 3개씩) */
+.bestsellers-swiper{
+    overflow: hidden;
+}
+.bestsellers-swiper .swiper-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+.bestsellers-swiper .swiper-slide{
+    height: auto;
 }
 
 .product-card {
     text-decoration: none;
+    display: block;
 }
 
 .product-card__img {
     aspect-ratio: 1 / 1;
 }
-
-/* DOT 인디케이터 */
+.product-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+/* DOT 인디케이터 — Swiper pagination이 이 컨테이너 안에 .dot을 생성함 */
 .dots {
     display: flex;
     justify-content: center;
@@ -260,6 +274,7 @@ main {
     gap: 0.375rem; /* 6px */
     margin-top: 1.5rem; /* 24px */
 }
+.dots.swiper-pagination{ position: static; } /* Swiper 기본 absolute 포지션 무력화 */
 
 .dot {
     display: block;
@@ -268,6 +283,7 @@ main {
     background-color: var(--line);
     border-radius: 0.125rem; /* 2px */
     flex-shrink: 0;
+    cursor: pointer;
     transition: all .2s ease;
 }
 
@@ -578,9 +594,11 @@ main {
     width: 2.719rem; height: 2.719rem; /* 22px */
     border-radius: 50%;
     background: #fff;
-    transition: transform .25s cubic-bezier(.2,.8,.2,1), background .3s ease;
+    will-change: transform; /* backdrop-filter 부모 안에서 끊김 없이 움직이도록 */
+    transition: transform .3s cubic-bezier(.2, .8, .2, 1), background .3s ease;
 }
-html[data-theme="dark"] .fab__toggle-knob { transform: translateX(1.5rem); } /* 24px */
+/* 트랙 안쪽 폭(=fab__toggle 안쪽 폭 - knob 폭)만큼 정확히 이동해야 끝까지 닿음 */
+html[data-theme="dark"] .fab__toggle-knob { transform: translateX(2.719rem); }
 
 .fab__label {
     font-family: var(--font-mono);
@@ -639,8 +657,8 @@ html[data-theme="dark"] .fab__toggle-knob { transform: translateX(1.5rem); } /* 
     background: #fff;
     transition: transform .25s ease;
 }
-.fab__add-icon::before { left: 0; top: 0rem; width: 1.5rem; height: 1px; }
-.fab__add-icon::after { left: 0rem; top: 0; width: 1px; height: 1.5rem; }
+.fab__add-icon::before { left: 0; top: 62.3%; width: 1rem; height: 1px; }
+.fab__add-icon::after { left: 63%; top: 0; width: 1px; height: 1rem; }
 .fab.is-expanded .fab__add-icon { transform: rotate(45deg); }
 
 @media (max-width: 30rem) { /* 480px */

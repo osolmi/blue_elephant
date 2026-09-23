@@ -80,75 +80,112 @@
       fabAdd.setAttribute('aria-label', expanded ? '최근 본 상품 접기' : '최근 본 상품 펼치기');
     });
   }
+(function () {
+    /* ==========================================================
+        1. 베스트셀러 데이터 정의
+    ========================================================== */
+    var bestsellersData = {
+        sunglasses: {
+            feature: './images/bs.png',
+            products: [
+                { img: './images/products/GLENDA black semi.png', name: 'GLENDA black semi', price: '₩49,900' },
+                { img: './images/products/RIFT pearl grey.png', name: 'RIFT pearl grey', price: '₩49,900' },
+                { img: './images/products/LEX snow.png', name: 'LEX snow', price: '₩49,900' },
+                { img: './images/products/VIGOR-S black.png', name: 'VIGOR-S black', price: '₩49,900' }
+            ]
+        },
+        glasses: {
+            feature: './images/bs_glasses.png',
+            products: [
+                { img: './images/products/KIN black.png', name: 'KIN black', price: '₩49,900' },
+                { img: './images/products/LEILA khaki 69,900원.png', name: 'VIST clear', price: '₩69,900' },
+                { img: './images/products/ENZO matte silver.png', name: 'ENZO matte silver', price: '₩69,900' },
+                { img: './images/products/PEPA grey.png', name: 'PEPA grey', price: '₩49,900' }
+            ]
+        }
+    };
 
-  /* ==========================================================
-     4. 베스트셀러 탭 — 좌측 비주얼 + 상품 그리드 + 도트 연동
-     ⚠ 아래 data 안의 이미지 경로/상품명/가격은 예시 placeholder.
-        실제 에셋이 준비되면 이 객체 값만 교체하면 됨.
-  ========================================================== */
-  var bestsellersData = {
-    sunglasses: {
-      feature: './images/bs.png',
-      products: [
-        // { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '₩49,900' },
-        { img: './images/products/GLENDA black semi.png', name: 'GLENDA black semi', price: '₩49,900' },
-        { img: './images/products/RIFT pearl grey.png', name: 'RIFT pearl grey', price: '₩49,900' },
-        { img: './images/products/LEX snow.png', name: 'LEX snow', price: '₩49,900' },
-        { img: './images/products/VIGOR-S black.png', name: 'VIGOR-S black', price: '₩49,900' }
-      ]
-    },
-    glasses: {
-      feature: './images/bs.png',
-      products: [
-        { img: './images/products/KIN black.png', name: 'KIN black', price: '₩49,900' },
-        { img: './images/products/LEILA khaki 69,900원.png', name: 'VIST clear', price: '₩69,900' },
-        { img: './images/products/ENZO matte silver.png', name: 'ENZO matte silver', price: '₩69,900' },
-        { img: './images/products/PEPA grey.png', name: 'PEPA grey', price: '₩49,900' },
-        { img: './images/products/NOUS black.png', name: 'NOUS black', price: '₩49,900' }
-      ]
+    var bestsellersSwiper = null;
+
+    /* ==========================================================
+        2. Swiper & 탭 기능 초기화
+    ========================================================== */
+    function initBestsellers() {
+        var section = document.querySelector('.bestsellers');
+        if (!section) return;
+
+        var tabs = section.querySelectorAll('.tab-group .tab');
+        var feature = section.querySelector('.bestsellers__feature');
+        var wrapper = document.getElementById('bestsellersWrapper');
+
+        function render(key) {
+            var data = bestsellersData[key];
+            if (!data || !wrapper) return;
+
+            // 좌측 메인 비주얼 이미지 변경
+            if (feature && data.feature) {
+                feature.style.backgroundImage = "url('" + data.feature + "')";
+            }
+
+            // 우측 슬라이드 동적 카드 생성
+            wrapper.innerHTML = data.products.map(function (p) {
+                return (
+                    '<div class="swiper-slide">' +
+                        '<a href="#shop" class="product-card">' +
+                            '<div class="product-card__img"><img src="' + p.img + '" alt="' + p.name + '"></div>' +
+                            '<p class="product-card__name">' + p.name + '</p>' +
+                            '<p class="product-card__price">' + p.price + '</p>' +
+                        '</a>' +
+                    '</div>'
+                );
+            }).join('');
+
+            // Swiper 재갱신
+            if (bestsellersSwiper) {
+                bestsellersSwiper.update();
+                bestsellersSwiper.slideTo(0, 0);
+            }
+        }
+
+        // initial rendering
+        render('sunglasses');
+
+        // Swiper 생성
+        if (typeof Swiper !== 'undefined' && wrapper) {
+            bestsellersSwiper = new Swiper('.bestsellers-swiper', {
+                slidesPerView: 3,
+                spaceBetween: 14,
+                slidesPerGroup: 1,
+                observer: true,
+                observeParents: true,
+                pagination: {
+                    el: '.dots',
+                    clickable: true,
+                    bulletClass: 'dot',
+                    bulletActiveClass: 'is-active'
+                },
+                breakpoints: {
+                    0: { slidesPerView: 1.2, spaceBetween: 10 },
+                    640: { slidesPerView: 2, spaceBetween: 12 },
+                    800: { slidesPerView: 3, spaceBetween: 14 }
+                }
+            });
+        }
+
+        // 탭 버튼 클릭 이벤트
+        tabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                tabs.forEach(function (t) { t.classList.remove('is-active'); });
+                tab.classList.add('is-active');
+                render(tab.dataset.tab);
+            });
+        });
     }
-  };
 
-  function initBestsellerTabs() {
-    var section = document.querySelector('.bestsellers');
-    if (!section) return;
-
-    var tabs = section.querySelectorAll('.tab-group .tab');
-    var feature = section.querySelector('.bestsellers__feature');
-    var productRow = section.querySelector('.product-row');
-    var dots = section.querySelectorAll('.dots .dot');
-
-    function render(key) {
-      var data = bestsellersData[key];
-      if (!data) return;
-
-      feature.style.backgroundImage = "url('" + data.feature + "')";
-
-      productRow.innerHTML = data.products.map(function (p) {
-        return (
-          '<a href="#shop" class="product-card">' +
-            '<div class="product-card__img"><img src="' + p.img + '" alt=""></div>' +
-            '<p class="product-card__name">' + p.name + '</p>' +
-            '<p class="product-card__price">' + p.price + '</p>' +
-          '</a>'
-        );
-      }).join('');
-
-      // 카테고리 전환 시 페이지네이션은 첫 도트로 리셋
-      dots.forEach(function (dot, i) {
-        dot.classList.toggle('is-active', i === 0);
-      });
-    }
-
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        tabs.forEach(function (t) { t.classList.remove('is-active'); });
-        tab.classList.add('is-active');
-        render(tab.dataset.tab);
-      });
+    document.addEventListener('DOMContentLoaded', function () {
+        initBestsellers();
     });
-  }
-
+})();
   /* ==========================================================
      5. 컬렉션(discover) 섹션 카테고리 탭 — 상품 리스트 전환
      ⚠ product-card__img는 현재 실제 에셋이 없어 플레이스홀더로 둠.

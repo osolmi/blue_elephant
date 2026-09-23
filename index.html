@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>블루엘리펀트</title>
-    <!-- 1. Google Fonts - Chivo Mono 웹폰트 -->
+    <!-- 2. Google Fonts - Chivo Mono 웹폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- 3. CSS -->
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/index.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- 4. swiper 라이브러리 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     <script src="./scripts/index.js" defer></script>
 </head>
 <body>
@@ -52,38 +56,53 @@
                 <div class="bestsellers__feature" style="background-image:url('./images/bs.png'); background-size:cover; background-position:center;"></div>
                 <div class="bestsellers__body">
                     <div class="bestsellers__head">
-                        <div>
-                            <p class="section-index">01 / BESTSELLERS</p>
+                        <p class="section-index">01 / BESTSELLERS</p>
+                        <div class="bestsellers__head-row">
                             <div class="tab-group">
                                 <button class="tab is-active bracket__wrap" data-tab="sunglasses"><span class="bracket">[</span> SUNGLASSES <span class="bracket">]</span></button>
                                 <button class="tab bracket__wrap" data-tab="glasses"><span class="bracket">[</span> GLASSES <span class="bracket">]</span></button>
                             </div>
+                            <a href="#shop" class="see-more">SEE MORE<img class="arrow" src="./images/arrow.png" data-hover-src="./images/arrow_signal.png" alt="arrow"></a>
                         </div>
-                        <a href="#shop" class="see-more">SEE MORE<img class="arrow" src="./images/arrow.png" alt="arrow"></a>
                     </div>
 
-                    <div class="product-row">
-                        <a href="#shop" class="product-card">
-                            <div class="product-card__img"><img src="./images/products/LOOM grey.png" alt=""></div>
-                            <p class="product-card__name">LOOM grey</p>
-                            <p class="product-card__price">49,900₩</p>
-                        </a>
-                        <a href="#shop" class="product-card">
-                            <div class=" product-card__img"><img src="./images/products/LOOM grey.png" alt=""></div>
-                            <p class="product-card__name">LOOM grey</p>
-                            <p class="product-card__price">49,900₩</p>
-                        </a>
-                        <a href="#shop" class="product-card">
-                            <div class=" product-card__img"><img src="./images/products/LOOM grey.png" alt=""></div>
-                            <p class="product-card__name">LOOM grey</p>
-                            <p class="product-card__price">49,900₩</p>
-                        </a>
+                    <!-- Swiper: 상품 캐러셀, 한 슬라이드에 3개씩 -->
+                    <div class="swiper bestsellers-swiper">
+                        <div class="swiper-wrapper" id="bestsellersWrapper">
+                            <div class="swiper-slide">
+                                <a href="#shop" class="product-card">
+                                    <div class="product-card__img"><img src="./images/products/GLENDA black semi.png" alt=""></div>
+                                    <p class="product-card__name">GLENDA black semi</p>
+                                    <p class="product-card__price">₩49,900</p>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#shop" class="product-card">
+                                    <div class="product-card__img"><img src="./images/products/RIFT pearl grey.png" alt=""></div>
+                                    <p class="product-card__name">RIFT pearl grey</p>
+                                    <p class="product-card__price">₩49,900</p>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#shop" class="product-card">
+                                    <div class="product-card__img"><img src="./images/products/LEX snow.png" alt=""></div>
+                                    <p class="product-card__name">LEX snow</p>
+                                    <p class="product-card__price">₩49,900</p>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#shop" class="product-card">
+                                    <div class="product-card__img"><img src="./images/products/VIGOR-S black.png" alt=""></div>
+                                    <p class="product-card__name">VIGOR-S black</p>
+                                    <p class="product-card__price">₩49,900</p>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="dots">
+                    <div class="dots"><!-- 
                         <span class="dot is-active"></span>
                         <span class="dot"></span>
-                        <span class="dot"></span>
+                        <span class="dot"></span> -->
                     </div>
                 </div>
             </div>
