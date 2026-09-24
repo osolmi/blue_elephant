@@ -19,7 +19,17 @@
 
     color-scheme: light;
 }
+/* ============ Dark Mode ============ */
+html[data-theme="dark"] {
+    --paper: #14161B;
+    --ink: #F4F5F6;
+    --stone: #A0A5B0;
+    --grey: #6C727E;
+    --line: #2C2F36;
+    --panel: #a8a8a9;
 
+    color-scheme: dark;
+}
 /* ============ Global Reset & Base ============ */
 * {
     box-sizing: border-box;
@@ -127,12 +137,12 @@ main {
 .arrow {width: 1.5rem; height: auto;}
 
 /* ============ Bracket Link Interaction ============
-   [ TEXT ] 형태 요소 전체에 적용되는 호버 인터랙션.
-   - 기본 간격은 .bracket__wrap의 gap: 0.5rem 그대로 사용
-   - 호버 시 gap이 0으로 스프링 이징(overshoot)으로 접히며 대괄호가 텍스트에 달라붙음
-   - 동시에 안쪽 텍스트가 짧게 한 번 깜빡임(flash)
-   - 대상 요소는 scripts/index.js의 initBracketLinks()가 자동으로
-     .bracket-link 클래스와 .bracket-text 래핑을 부여함 (HTML 수정 불필요)
+    [ TEXT ] 형태 요소 전체에 적용되는 호버 인터랙션.
+    - 기본 간격은 .bracket__wrap의 gap: 0.5rem 그대로 사용
+    - 호버 시 gap이 0으로 스프링 이징(overshoot)으로 접히며 대괄호가 텍스트에 달라붙음
+    - 동시에 안쪽 텍스트가 짧게 한 번 깜빡임(flash)
+    - 대상 요소는 scripts/index.js의 initBracketLinks()가 자동으로
+        .bracket-link 클래스와 .bracket-text 래핑을 부여함 (HTML 수정 불필요)
 ============================================================ */
 .bracket-link{
     display: inline-flex;
@@ -140,7 +150,7 @@ main {
     gap: 0.5rem;
     transition: gap .35s cubic-bezier(.34, 1.56, .64, 1);
 }
-.bracket-link:hover{ gap: 0; }
+.bracket-link:hover{ gap: 0.125rem; }
 
 .bracket-link .bracket{
     transition: color .2s ease;
@@ -150,7 +160,8 @@ main {
 .bracket-link .bracket-text{
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem; /* 텍스트 내부에 화살표 등이 있을 때 그 간격은 유지 */
+    gap: 0.5rem;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .bracket-link:hover .bracket-text{
     animation: bracketFlash .3s ease;

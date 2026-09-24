@@ -50,10 +50,23 @@
   ========================================================== */
   var themeToggle = document.getElementById('themeToggle');
   var root = document.documentElement;
+  var sunIcon = document.getElementById('sunIcon');
+  var moonIcon = document.getElementById('moonIcon');
 
   function setTheme(isDark) {
     root.setAttribute('data-theme', isDark ? 'dark' : 'light');
     if (themeToggle) themeToggle.setAttribute('aria-checked', String(isDark));
+
+    // 이미지 파일 교체 처리
+    if (sunIcon && moonIcon) {
+      if (isDark) {
+        sunIcon.src = './images/icon_sun_off.png';
+        moonIcon.src = './images/icon_moon.png';
+      } else {
+        sunIcon.src = './images/icon_sun.png';
+        moonIcon.src = './images/icon_moon_off.png';
+      }
+    }
   }
   setTheme(false);
 
@@ -64,8 +77,29 @@
     });
   }
 
+/* ==========================================================
+    3. 화살표 이미지 호버 체인지
+  ========================================================== */
+  function initArrowHover() {
+    var arrows = document.querySelectorAll('.arrow[data-hover-src]');
+    arrows.forEach(function (arrow) {
+      var defaultSrc = arrow.src;
+      var hoverSrc = arrow.getAttribute('data-hover-src');
+
+      var parent = arrow.closest('a, button, .bracket-link');
+      var target = parent || arrow;
+
+      target.addEventListener('mouseenter', function () {
+        arrow.src = hoverSrc;
+      });
+      target.addEventListener('mouseleave', function () {
+        arrow.src = defaultSrc;
+      });
+    });
+  }
+
   /* ==========================================================
-    3. 최근 본 상품 위젯 — 펼치기/접기, 최대 3개 제한
+    4. 최근 본 상품 위젯 — 펼치기/접기, 최대 3개 제한
   ========================================================== */
   var fab = document.getElementById('fab');
   var fabAdd = document.getElementById('fabAdd');
@@ -84,7 +118,7 @@
   }
 
 /* ==========================================================
-   4. 베스트셀러 탭 기능 — scroll-snap 페이지네이션 버전
+    5. 베스트셀러 탭 기능 — scroll-snap 페이지네이션 버전
 ========================================================== */
 var bestsellersData = {
   sunglasses: {
