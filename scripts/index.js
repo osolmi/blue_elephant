@@ -1,6 +1,8 @@
 (function () {
+  /* ==========================================================
+    1. 대괄호 링크 처리
+  ========================================================== */
   function initBracketLinks() {
-
     // Case A — 이미 .bracket 스팬 두 개(여는/닫는 대괄호)를 가진 요소
     var spannedEls = document.querySelectorAll('.tab, .discover-all, .editorial-tile__cta');
     spannedEls.forEach(function (el) {
@@ -44,7 +46,7 @@
   }
 
   /* ==========================================================
-     2. 다크모드 토글 — 항상 라이트로 시작 (OS 설정 자동 감지 안 함)
+    2. 다크모드 토글 — 항상 라이트로 시작 (OS 설정 자동 감지 안 함)
   ========================================================== */
   var themeToggle = document.getElementById('themeToggle');
   var root = document.documentElement;
@@ -63,7 +65,7 @@
   }
 
   /* ==========================================================
-     3. 최근 본 상품 위젯 — 펼치기/접기, 최대 3개 제한
+    3. 최근 본 상품 위젯 — 펼치기/접기, 최대 3개 제한
   ========================================================== */
   var fab = document.getElementById('fab');
   var fabAdd = document.getElementById('fabAdd');
@@ -80,164 +82,159 @@
       fabAdd.setAttribute('aria-label', expanded ? '최근 본 상품 접기' : '최근 본 상품 펼치기');
     });
   }
-(function () {
-    /* ==========================================================
-        1. 베스트셀러 데이터 정의
-    ========================================================== */
-    var bestsellersData = {
-        sunglasses: {
-            feature: './images/bs.png',
-            products: [
-                { img: './images/products/GLENDA black semi.png', name: 'GLENDA black semi', price: '₩49,900' },
-                { img: './images/products/RIFT pearl grey.png', name: 'RIFT pearl grey', price: '₩49,900' },
-                { img: './images/products/LEX snow.png', name: 'LEX snow', price: '₩49,900' },
-                { img: './images/products/VIGOR-S black.png', name: 'VIGOR-S black', price: '₩49,900' }
-            ]
-        },
-        glasses: {
-            feature: './images/bs_glasses.png',
-            products: [
-                { img: './images/products/KIN black.png', name: 'KIN black', price: '₩49,900' },
-                { img: './images/products/LEILA khaki 69,900원.png', name: 'VIST clear', price: '₩69,900' },
-                { img: './images/products/ENZO matte silver.png', name: 'ENZO matte silver', price: '₩69,900' },
-                { img: './images/products/PEPA grey.png', name: 'PEPA grey', price: '₩49,900' }
-            ]
-        }
-    };
 
-    var bestsellersSwiper = null;
-
-    /* ==========================================================
-        2. Swiper & 탭 기능 초기화
-    ========================================================== */
-    function initBestsellers() {
-        var section = document.querySelector('.bestsellers');
-        if (!section) return;
-
-        var tabs = section.querySelectorAll('.tab-group .tab');
-        var feature = section.querySelector('.bestsellers__feature');
-        var wrapper = document.getElementById('bestsellersWrapper');
-
-        function render(key) {
-            var data = bestsellersData[key];
-            if (!data || !wrapper) return;
-
-            // 좌측 메인 비주얼 이미지 변경
-            if (feature && data.feature) {
-                feature.style.backgroundImage = "url('" + data.feature + "')";
-            }
-
-            // 우측 슬라이드 동적 카드 생성
-            wrapper.innerHTML = data.products.map(function (p) {
-                return (
-                    '<div class="swiper-slide">' +
-                        '<a href="#shop" class="product-card">' +
-                            '<div class="product-card__img"><img src="' + p.img + '" alt="' + p.name + '"></div>' +
-                            '<p class="product-card__name">' + p.name + '</p>' +
-                            '<p class="product-card__price">' + p.price + '</p>' +
-                        '</a>' +
-                    '</div>'
-                );
-            }).join('');
-
-            // Swiper 재갱신
-            if (bestsellersSwiper) {
-                bestsellersSwiper.update();
-                bestsellersSwiper.slideTo(0, 0);
-            }
-        }
-
-        // initial rendering
-        render('sunglasses');
-
-        // Swiper 생성
-        if (typeof Swiper !== 'undefined' && wrapper) {
-            bestsellersSwiper = new Swiper('.bestsellers-swiper', {
-                slidesPerView: 3,
-                spaceBetween: 14,
-                slidesPerGroup: 1,
-                observer: true,
-                observeParents: true,
-                pagination: {
-                    el: '.dots',
-                    clickable: true,
-                    bulletClass: 'dot',
-                    bulletActiveClass: 'is-active'
-                },
-                breakpoints: {
-                    0: { slidesPerView: 1.2, spaceBetween: 10 },
-                    640: { slidesPerView: 2, spaceBetween: 12 },
-                    800: { slidesPerView: 3, spaceBetween: 14 }
-                }
-            });
-        }
-
-        // 탭 버튼 클릭 이벤트
-        tabs.forEach(function (tab) {
-            tab.addEventListener('click', function () {
-                tabs.forEach(function (t) { t.classList.remove('is-active'); });
-                tab.classList.add('is-active');
-                render(tab.dataset.tab);
-            });
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        initBestsellers();
-    });
-})();
-  /* ==========================================================
-     5. 컬렉션(discover) 섹션 카테고리 탭 — 상품 리스트 전환
-     ⚠ product-card__img는 현재 실제 에셋이 없어 플레이스홀더로 둠.
-  ========================================================== */
-  var categoryData = {
-    sunglasses2: [
-      { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '₩49,900' },
-      { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '₩49,900' },
-      { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '₩49,900' },
-      { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '₩49,900' }
-    ],
-    glasses2: [
-      { name: 'VIST clear', price: '39,900₩' },
-      { name: 'VIST clear', price: '39,900₩' },
-      { name: 'VIST clear', price: '39,900₩' },
-      { name: 'VIST clear', price: '39,900₩' }
+/* ==========================================================
+   4. 베스트셀러 탭 기능 — scroll-snap 페이지네이션 버전
+========================================================== */
+var bestsellersData = {
+  sunglasses: {
+    feature: './images/bs.png',
+    products: [
+      { img: './images/products/GLENDA black semi.png', name: 'GLENDA black semi', price: '₩49,900' },
+      { img: './images/products/RIFT pearl grey.png', name: 'RIFT pearl grey', price: '₩49,900' },
+      { img: './images/products/SUENO silver.png', name: 'SUENO silver', price: '₩69,900' },
+      { img: './images/products/HUSH matte silver.png', name: 'HUSH matte silver', price: '₩69,900' },
+      { img: './images/products/FLUXO pearl black.png', name: 'FLUXO pearl black', price: '₩49,900' },
+      { img: './images/products/DRUKI grey.png', name: 'DRUKI grey', price: '₩49,900' },
+      { img: './images/products/TRIKA black.png', name: 'TRIKA black', price: '₩69,900' },
+      { img: './images/products/SKID silver.png', name: 'SKID silver', price: '₩49,900' },
+      { img: './images/products/VIGOR-S black.png', name: 'VIGOR-S black', price: '₩49,900' },
     ]
-  };
+  },
+  glasses: {
+    feature: './images/bs_glasses.png',
+    products: [
+      { img: './images/products/KIN black.png', name: 'KIN black', price: '₩49,900' },
+      { img: './images/products/LEILA khaki.png', name: 'LEILA khaki', price: '₩69,900' },
+      { img: './images/products/GARNET black.png', name: 'GARNET black', price: '₩69,900' },
+      { img: './images/products/PEPA grey.png', name: 'PEPA grey', price: '₩49,900' },
+      { img: './images/products/ENZO matte silver.png', name: 'ENZO matte silver', price: '₩69,900' },
+      { img: './images/products/CLAUDE black.png', name: 'CLAUDE black', price: '₩49,900' },
+      { img: './images/products/NOUS black.png', name: 'NOUS black', price: '₩49,900' },
+      // ⚠ 9개 채우려면 5개 더 추가
+    ]
+  }
+};
 
-  function initCategoryTabs() {
-    var section = document.querySelector('.discover .category');
-    if (!section) return;
+function chunk(arr, size) {
+  var out = [];
+  for (var i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
 
-    var tabs = section.querySelectorAll('.category-head .tab');
-    var grid = section.querySelector('.category-grid');
+function initBestsellerTabs() {
+  var section = document.querySelector('.bestsellers');
+  if (!section) return;
 
-    function render(key) {
-      var products = categoryData[key];
-      if (!products) return;
+  var tabs = section.querySelectorAll('.tab-group .tab');
+  var feature = section.querySelector('.bestsellers__feature');
+  var track = document.getElementById('bestsellersWrapper');
+  var dotsWrap = section.querySelector('.dots');
 
-      grid.innerHTML = products.map(function (p) {
-        return (
-          '<a href="#" class="product-card">' +
-            '<div class="product-card__img"></div>' +
-            '<p class="product-card__name">' + p.name + '</p>' +
-            '<p class="product-card__price">' + p.price + '</p>' +
-          '</a>'
-        );
-      }).join('');
+  function render(key) {
+    var data = bestsellersData[key];
+    if (!data || !track) return;
+
+    if (feature && data.feature) {
+      feature.style.backgroundImage = "url('" + data.feature + "')";
     }
 
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        tabs.forEach(function (t) { t.classList.remove('is-active'); });
-        tab.classList.add('is-active');
-        render(tab.dataset.tab);
+    var pages = chunk(data.products, 3);
+
+    track.innerHTML = pages.map(function (page) {
+      return '<div class="bs-page">' + page.map(function (p) {
+        return '<a href="#shop" class="product-card">' +
+          '<div class="product-card__img"><img src="' + p.img + '" alt="' + p.name + '"></div>' +
+          '<p class="product-card__name">' + p.name + '</p>' +
+          '<p class="product-card__price">' + p.price + '</p>' +
+          '</a>';
+      }).join('') + '</div>';
+    }).join('');
+
+    dotsWrap.innerHTML = pages.map(function (_, i) {
+      return '<button class="dot' + (i === 0 ? ' is-active' : '') + '" data-page="' + i + '"></button>';
+    }).join('');
+
+    track.scrollTo({ left: 0 });
+
+    dotsWrap.querySelectorAll('.dot').forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        track.scrollTo({ left: track.clientWidth * Number(dot.dataset.page), behavior: 'smooth' });
       });
     });
   }
 
+  track.addEventListener('scroll', function () {
+    var i = Math.round(track.scrollLeft / track.clientWidth);
+    dotsWrap.querySelectorAll('.dot').forEach(function (dot, idx) {
+      dot.classList.toggle('is-active', idx === i);
+    });
+  });
+
+  render('sunglasses');
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      render(tab.dataset.tab);
+    });
+  });
+}
+
   /* ==========================================================
-     초기화
+    5. 컬렉션(discover) 섹션 카테고리 탭 — 상품 리스트 전환
+  ========================================================== */
+var categoryData = {
+  sunglasses2: [
+    { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '₩49,900' },
+    { img: './images/products/LIMIA black.png', name: 'LIMIA black', price: '₩69,900' },
+    { img: './images/products/TEN silver.png', name: 'TEN silver', price: '₩49,900' },
+    { img: './images/products/RICK black.png', name: 'RICK grey', price: '₩49,900' }
+  ],
+  glasses2: [
+    { img: './images/products/CHENS silver.png', name: 'CHENS silver', price: '₩69,900' },
+    { img: './images/products/PEPA grey.png', name: 'PEPA grey', price: '₩49,900' },
+    { img: './images/products/DOVE black.png', name: 'DOVE black', price: '₩69,900' },
+    { img: './images/products/DUBON leopard.png', name: 'DUBON leopard', price: '₩49,900' }
+  ]
+};
+
+function initCategoryTabs() {
+  var section = document.querySelector('.discover .category');
+  if (!section) return;
+
+  var tabs = section.querySelectorAll('.category-head .tab');
+  var grid = section.querySelector('.category-grid');
+
+  function render(key) {
+    var products = categoryData[key];
+    if (!products) return;
+
+    grid.innerHTML = products.map(function (p) {
+      return (
+        '<a href="#" class="product-card">' +
+          '<div class="product-card__img"><img src="' + p.img + '" alt="' + p.name + '"></div>' +
+          '<p class="product-card__name">' + p.name + '</p>' +
+          '<p class="product-card__price">' + p.price + '</p>' +
+        '</a>'
+      );
+    }).join('');
+  }
+
+  render('sunglasses2');
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      render(tab.dataset.tab);
+    });
+  });
+}
+
+  /* ==========================================================
+    초기화
   ========================================================== */
   document.addEventListener('DOMContentLoaded', function () {
     initBracketLinks();

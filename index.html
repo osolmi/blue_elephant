@@ -12,10 +12,9 @@
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/index.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <!-- 4. swiper 라이브러리 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-    <script src="./scripts/index.js" defer></script>
+    <!--swiper 필수 css cdn 연결-->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./styles/index.css"> -->
 </head>
 <body>
     <!-- ============ Header ============ -->
@@ -67,65 +66,33 @@
                     </div>
 
                     <!-- Swiper: 상품 캐러셀, 한 슬라이드에 3개씩 -->
-                    <div class="swiper bestsellers-swiper">
-                        <div class="swiper-wrapper" id="bestsellersWrapper">
-                            <div class="swiper-slide">
-                                <a href="#shop" class="product-card">
-                                    <div class="product-card__img"><img src="./images/products/GLENDA black semi.png" alt=""></div>
-                                    <p class="product-card__name">GLENDA black semi</p>
-                                    <p class="product-card__price">₩49,900</p>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="#shop" class="product-card">
-                                    <div class="product-card__img"><img src="./images/products/RIFT pearl grey.png" alt=""></div>
-                                    <p class="product-card__name">RIFT pearl grey</p>
-                                    <p class="product-card__price">₩49,900</p>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="#shop" class="product-card">
-                                    <div class="product-card__img"><img src="./images/products/LEX snow.png" alt=""></div>
-                                    <p class="product-card__name">LEX snow</p>
-                                    <p class="product-card__price">₩49,900</p>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="#shop" class="product-card">
-                                    <div class="product-card__img"><img src="./images/products/VIGOR-S black.png" alt=""></div>
-                                    <p class="product-card__name">VIGOR-S black</p>
-                                    <p class="product-card__price">₩49,900</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dots"><!-- 
-                        <span class="dot is-active"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span> -->
-                    </div>
+                    <div class="bestsellers-swiper" id="bestsellersWrapper"></div>
+                    <div class="dots"></div>
                 </div>
             </div>
         </section>
         <!-- ============ Editorial split ============ -->
-        <section class="editorial-split">
-            <a href="#shop" class="editorial-tile editorial-tile--hover">
-                <div class="editorial-split__img sg__img"></div>
-                <div class="editorial-tile__scrim"></div>
-                <div class="editorial-tile__content">
-                    <p class="editorial-tile__label">SUNGLASSES</p>
-                    <p class="editorial-tile__cta"><span class="bracket">[</span> VIEW ALL <span class="arrow">→</span> <span class="bracket">]</span></p>
-                </div>
-            </a>
-
-            <a href="#shop" class="editorial-tile editorial-tile--hover">
-                <div class="editorial-split__img g__img"></div>
-                <div class="editorial-tile__scrim"></div>
-                <div class="editorial-tile__content">
-                    <p class="editorial-tile__label">GLASSES</p>
-                    <p class="editorial-tile__cta"><span class="bracket">[</span> VIEW ALL <span class="arrow">→</span> <span class="bracket">]</span></p>
-                </div>
-            </a>
+        <section class="editorial-split_wrap">
+            <p class="section-index">02 / CATEGORY</p>
+            <div class="editorial-split">
+                <a href="#shop" class="editorial-tile editorial-tile--hover">
+                    <div class="editorial-split__img sg__img"></div>
+                    <div class="editorial-tile__scrim"></div>
+                    <div class="editorial-tile__content">
+                        <p class="editorial-tile__label">SUNGLASSES</p>
+                        <p class="editorial-tile__cta"><span class="bracket">[</span> VIEW ALL <span class="arrow">→</span> <span class="bracket">]</span></p>
+                    </div>
+                </a>
+    
+                <a href="#shop" class="editorial-tile editorial-tile--hover">
+                    <div class="editorial-split__img g__img"></div>
+                    <div class="editorial-tile__scrim"></div>
+                    <div class="editorial-tile__content">
+                        <p class="editorial-tile__label">GLASSES</p>
+                        <p class="editorial-tile__cta"><span class="bracket">[</span> VIEW ALL <span class="arrow">→</span> <span class="bracket">]</span></p>
+                    </div>
+                </a>
+            </div>
         </section>
 
         <!-- ============ Discover / Category ============ -->
@@ -152,8 +119,8 @@
                                 <span class="spotlight__index">[ 01 ]</span>
                                 <div class="spotlight__img1" style="background-image:url('./images/col_1.jpg'); background-size:cover; background-position:center;"></div>
                                 <div class="spotlight__info">
-                                    <p class="spotlight__name">FLUXO</p>
-                                    <p class="spotlight__variant">pearl black</p>
+                                    <p class="spotlight__name">LIMIA</p>
+                                    <p class="spotlight__variant">brick</p>
                                 </div>
                             </div>
                         </div>
@@ -181,26 +148,6 @@
                         </div>
 
                         <div class="category-grid">
-                            <a href="#" class="product-card">
-                                <div class=" product-card__img"><img src="" alt=""></div>
-                                <p class="product-card__name">LOOM grey</p>
-                                <p class="product-card__price">49,900₩</p>
-                            </a>
-                            <a href="#" class="product-card">
-                                <div class=" product-card__img"></div>
-                                <p class="product-card__name">LOOM grey</p>
-                                <p class="product-card__price">49,900₩</p>
-                            </a>
-                            <a href="#" class="product-card">
-                                <div class=" product-card__img"></div>
-                                <p class="product-card__name">LOOM grey</p>
-                                <p class="product-card__price">49,900₩</p>
-                            </a>
-                            <a href="#" class="product-card">
-                                <div class=" product-card__img"></div>
-                                <p class="product-card__name">LOOM grey</p>
-                                <p class="product-card__price">49,900₩</p>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -274,5 +221,7 @@
             <span class="fab__add-icon"></span>
         </button>
     </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
+    <script src="./scripts/index.js"></script>
 </body>
 </html>
