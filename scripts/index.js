@@ -224,7 +224,7 @@ var categoryData = {
     { img: './images/products/LOOM grey.png', name: 'LOOM grey', price: '₩49,900' },
     { img: './images/products/LIMIA black.png', name: 'LIMIA black', price: '₩69,900' },
     { img: './images/products/TEN silver.png', name: 'TEN silver', price: '₩49,900' },
-    { img: './images/products/RICK black.png', name: 'RICK grey', price: '₩49,900' }
+    { img: './images/products/RICK black.png', name: 'RICK black', price: '₩49,900' }
   ],
   glasses2: [
     { img: './images/products/CHENS silver.png', name: 'CHENS silver', price: '₩69,900' },
@@ -247,7 +247,7 @@ function initCategoryTabs() {
 
     grid.innerHTML = products.map(function (p) {
       return (
-        '<a href="#" class="product-card">' +
+        '<a href="#shop" class="product-card">' +
           '<div class="product-card__img"><img src="' + p.img + '" alt="' + p.name + '"></div>' +
           '<p class="product-card__name">' + p.name + '</p>' +
           '<p class="product-card__price">' + p.price + '</p>' +
@@ -272,6 +272,7 @@ function initCategoryTabs() {
   ========================================================== */
   document.addEventListener('DOMContentLoaded', function () {
     initBracketLinks();
+    initArrowHover();
     initBestsellerTabs();
     initCategoryTabs();
   });
