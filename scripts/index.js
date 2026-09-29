@@ -136,7 +136,7 @@ var bestsellersData = {
     ]
   },
   glasses: {
-    feature: './images/bs_glasses.png',
+    feature: './images/bs_g.jpg',
     products: [
       { img: './images/products/KIN black.png', name: 'KIN black', price: '₩49,900' },
       { img: './images/products/LEILA khaki.png', name: 'LEILA khaki', price: '₩69,900' },
