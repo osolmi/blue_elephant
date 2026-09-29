@@ -145,7 +145,6 @@ var bestsellersData = {
       { img: './images/products/ENZO matte silver.png', name: 'ENZO matte silver', price: '₩69,900' },
       { img: './images/products/CLAUDE black.png', name: 'CLAUDE black', price: '₩49,900' },
       { img: './images/products/NOUS black.png', name: 'NOUS black', price: '₩49,900' },
-      // ⚠ 9개 채우려면 5개 더 추가
     ]
   }
 };
