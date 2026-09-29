@@ -122,7 +122,7 @@
 ========================================================== */
 var bestsellersData = {
   sunglasses: {
-    feature: './images/bs.png',
+    feature: './images/bs_sg.png',
     products: [
       { img: './images/products/GLENDA black semi.png', name: 'GLENDA black semi', price: '₩49,900' },
       { img: './images/products/RIFT pearl grey.png', name: 'RIFT pearl grey', price: '₩49,900' },
@@ -136,7 +136,7 @@ var bestsellersData = {
     ]
   },
   glasses: {
-    feature: './images/bs_glasses.png',
+    feature: './images/bs_g1.png',
     products: [
       { img: './images/products/KIN black.png', name: 'KIN black', price: '₩49,900' },
       { img: './images/products/LEILA khaki.png', name: 'LEILA khaki', price: '₩69,900' },
