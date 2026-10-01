@@ -252,7 +252,7 @@ main {
 .see-more {font-size: var(--blue-font-xs);}
 .product-card * {
     font-family: pretendard;
-    font-size: var(--blue-font-xs);
+    font-size: var(--blue-font-s);
 }
 .product-card__name {
     font-weight: 500;
