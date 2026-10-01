@@ -112,8 +112,9 @@ main {
     .nav__logo { width: 5rem; }
     .nav__right {gap: 0; }
     .nav__links {gap: 1rem; }
-    .nav__links a {font-size: var(--blue-font-s); padding: 0;}
-    .nav__icons {gap: 0.6rem;}
+    .nav__links a {font-size: var(--blue-font-xs); padding: 0;}
+    .nav__icons {gap: 0.4rem; margin-left: 0.8rem; }
+    .icon-btn {padding:4px;}
 } /* 720px */
 
 /* ============ Hero ============ */
