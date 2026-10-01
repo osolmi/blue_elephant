@@ -20,7 +20,7 @@
     color-scheme: light;
 }
 /* ============ 모바일 반응형 ============ */
-@media (max-width: 30rem){
+@media (max-width: 50rem){
     :root{ --edge: 15px; --margin-btm:40px;}
 }
 /* ============ Dark Mode ============ */
@@ -74,7 +74,7 @@ main {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-    width: 90%;
+    width: 95%;
     max-width: 55.313rem; /* 885px */
     height: 4.063rem; /* 65px */
     display: flex;
@@ -83,7 +83,6 @@ main {
     padding: 0.625rem 1.875rem; /* 10px 30px */
     background: rgba(20, 22, 27, 0.2);
     backdrop-filter: blur(1.125rem) saturate(120%); /* 18px */
-    -webkit-backdrop-filter: blur(1.125rem) saturate(120%);
     border-radius: 2.5rem; /* 40px */
     color: #fff;
 }
@@ -102,16 +101,19 @@ main {
 }
 .nav__links a:hover { opacity: 1; }
 .nav__icons { display: flex; align-items: center; gap: 1.25rem; margin-left: 1.563rem; } /* 20px, 25px */
-.icon-btn { width: 1.25rem; height: 1.25rem; background: none; border: none; cursor: pointer; padding: 0; } /* 20px */
+.icon-btn { width: 1.5rem; height: 1.5rem; background: none; border: none; cursor: pointer; padding: 2.5px; } /* 20px */
 .icon-btn img { width: 100%; height: auto; }
-@media (max-width: 30rem) {
+@media (max-width: 50rem) {
     .nav{
         top: var(--edge);
-        padding: 0.625rem 1.875rem; /* 왜 안돼 */
+        height: 3.5rem; /* 56px */
     }
-    .nav__links { display: none; }
-    .nav__logo { width: 4rem; }
-    .nav__links a {padding: 0;}
+    .nav__links {}
+    .nav__logo { width: 5rem; }
+    .nav__right {gap: 0; }
+    .nav__links {gap: 1rem; }
+    .nav__links a {font-size: var(--blue-font-s); padding: 0;}
+    .nav__icons {gap: 0.6rem;}
 } /* 720px */
 
 /* ============ Hero ============ */
@@ -147,7 +149,7 @@ main {
 .hero__caption--left { position: absolute; bottom: var(--edge); left: var(--edge); }
 .hero__caption--right { position: absolute; bottom: 50%; right: var(--edge); }
 /* hero 모바일 반응형 */
-@media (max-width: 30rem){
+@media (max-width: 50rem){
     .hero{
         height: 77vh;
         margin-bottom: var(--margin-btm); /* 섹션 간 갭 스펙 */
@@ -363,7 +365,7 @@ main {
     width: 1.75rem; /* 28px */
 }
 /* Bestsellers 모바일 반응형 */
-@media (max-width: 30rem) {
+@media (max-width: 50rem) {
     .bestsellers {
         padding: 0 var(--edge); margin-bottom: var(--margin-btm);
     }
@@ -457,13 +459,13 @@ main {
         transform:none;
     }
 }
-@media (max-width: 30rem){
+@media (max-width: 50rem){
     .editorial-split_wrap{ padding: 0 var(--edge); margin-bottom: var(--margin-btm); }
     .editorial-split{
     display: flex;
     flex-flow: column;
     }
-    .editorial-split__img{ aspect-ratio:1/0.7; }
+    .editorial-split__img{ aspect-ratio:1/0.8; }
 }
 
 /* ============ Discover / Category ============ */
@@ -577,34 +579,48 @@ main {
     gap: var(--gutter);
 }
 
-@media (max-width: 30rem){
+@media (max-width: 50rem){
     .discover{ padding: 0 var(--edge) 0; margin-bottom: 40px; }
     .discover__grid{display: flex; flex-flow: column nowrap;}
     .discover__feature {
     background-size: contain;
     aspect-ratio: 402 / 520 !important;
-    width: 100%;;
+    width: 100%; height: 80vh;
     position: static;
     top: 1.25rem;
-}
-    .discover__top{
-        flex-direction: row;
-        align-items: center;
-        gap: 24px;
     }
-    .discover__top .spotlight{
+    .discover__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
+        box-sizing: border-box;
+        gap: 16px;
+    }
+    .discover__index {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex-shrink: 0;
+    }
+
+    .discover-all {
+        margin-bottom: 1rem;
+        white-space: nowrap;
     }
     .spotlight--01 {
-        width: 100% !important;
-        height: auto !important;
+        flex-grow: 1;
+        max-width: 200px;
+        height: auto;
         margin-bottom: 24px;
     }
     .spotlight--01 .spotlight__img1 {
-        width: 100% !important; height: 208px !important;
-        background-size: contain !important;
+        width: 100%; 
+        height: auto;
+        aspect-ratio: 3 / 4 !important;
+        background-size: cover;
         background-repeat: no-repeat;
-        background-position: center !important;
+        background-position: center;
     }
     .spotlight--02{
         width: 100%;
@@ -662,9 +678,10 @@ main {
     color: #8B8F98;
 }
 @media (max-width: 50rem) { /* 800px */
-    .footer__top { grid-template-columns: 1fr 1fr; }
-    .footer__wordmark { grid-column: 1/-1; text-align: left; margin-top: 1.25rem; } /* 20px */
-    .footer__bottom { flex-direction: column; gap: 0.5rem; } /* 8px */
+    .footer__top { grid-template-columns: 1fr 1fr; height:100%; padding-bottom: 1rem; }
+    .footer__top > *:nth-child(3) {margin-top: 2rem; grid-column: 1/-1; }
+    .footer__wordmark {width:100%; grid-column: 1/-1; text-align: left; margin-top: 6rem; } /* 20px */
+    .footer__bottom {padding-top:0;} /* 20px */
 }
 
 /* ============ Fixed FAB ============ */
@@ -676,7 +693,6 @@ main {
     width: 7.188rem; /* 115px */
     background: rgba(20, 22, 27, 0.2);
     backdrop-filter: blur(1.125rem) saturate(120%); /* 18px */
-    -webkit-backdrop-filter: blur(1.125rem) saturate(120%);
     border-radius: 1.75rem; /* 28px */
     padding: 0.625rem; /* 10px */
     display: flex;
@@ -768,18 +784,61 @@ html[data-theme="dark"] .fab__toggle-knob { transform: translateX(2.719rem); }
 .fab__add-icon {
     position: relative;
     width: 0.75rem; height: 0.75rem; /* 12px */
+    display: block;
+    transition: transform .25s ease;
 }
 .fab__add-icon::before,
 .fab__add-icon::after {
     content: "";
     position: absolute;
     background: #fff;
-    transition: transform .25s ease;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
 }
-.fab__add-icon::before { left: 0; top: 62.3%; width: 1rem; height: 1px; }
-.fab__add-icon::after { left: 63%; top: 0; width: 1px; height: 1rem; }
+.fab__add-icon::before { width: 100%; height: 1px; }
+.fab__add-icon::after { width:1px; height: 100%; }
 .fab.is-expanded .fab__add-icon { transform: rotate(45deg); }
 
-@media (max-width: 30rem) { /* 480px */
-    .fab { right: 1rem; bottom: 1rem; width: 5.75rem; } /* 16px, 92px */
+@media (max-width: 50rem) { /* 800px 이하 모바일 화면 */
+    
+    /* 1. 💡 모바일에서만 FAB 가로폭 축소 (115px -> 92px) */
+    .fab {
+        padding: 0.5rem;
+        width: 5.75rem;
+        gap: 0;
+    }
+    .fab__label { 
+        display: none; 
+    }
+    .fab__list{
+        margin-top: 0.5rem;
+        gap: 0.5rem;
+    }
+    .fab__item{
+        padding: 0.375rem;
+    }
+    .fab__item-img {
+    margin-bottom: 0.25rem;
+    }
+    
+    .fab__item-price {
+    }
+    /* 2. 모바일에서만 토글 상자 높이 축소 (51.5px -> 40px) */
+    .fab__toggle {
+        height: 2.5rem;
+    }
+    .fab__toggle-icon img {
+        width: 1.125rem;
+    }
+
+    /* 3. 모바일에서만 토글 내부 원 크기 축소 (43.5px -> 32px) */
+    .fab__toggle-knob {
+        width: 2rem;
+        height: 2rem;
+        left: 0.25rem; /* 4px */
+    }
+
+    html[data-theme="dark"] .fab__toggle-knob { 
+        transform: translateX(2.25rem); 
+    }
 }
