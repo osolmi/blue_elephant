@@ -424,7 +424,7 @@ main {
     /* 1920px 피그마 기준 비율 유지 */
     grid-template-columns: 780fr 970fr;
     gap: calc(50 / 1920 * 100vw); /* 1920px 화면에서 정확히 50px 비율 유지 */
-    align-items: start;
+    align-items: stretch;
 }
 
 /* 좌측 대형 고정 포스터 */
@@ -433,6 +433,7 @@ main {
     height: 95vh;
     position: sticky;
     top: 1.25rem;
+    align-self: flex-start;
 }
 
 .discover__body {
