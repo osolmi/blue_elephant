@@ -496,7 +496,7 @@ main {
     background-image:url('../images/col_big.jpg');
     background-size:cover; background-position:center; background-repeat: no-repeat;
     width: 100%;
-    height: 90vh;
+    height: 95vh;
     position: sticky !important;
     top: 1.25rem;
 }
@@ -654,10 +654,15 @@ main {
 }
 .footer__top {
     display: grid;
-    grid-template-columns: repeat(3, 1fr) auto;
+    justify-content: space-between;
+    grid-template-columns: 1fr auto;
     gap: var(--gutter);
     align-items: start;
-    padding-bottom: 2.5rem; /* 40px */
+    padding-bottom: 3rem; /* 40px */
+}
+.footer__labels {
+    display: flex;
+    gap: 8.75rem; /* 40px */
 }
 .footer__label {
     font-family: var(--font-mono);
@@ -680,7 +685,7 @@ main {
 }
 .footer__links a:hover { opacity: 1; color: var(--signal); }
 .footer__wordmark {
-    width: 22rem; height: auto;
+    width: 21rem; height: auto;
 }
 .footer__wordmark img {width: 100%;}
 .footer__bottom {
@@ -691,11 +696,32 @@ main {
     font-size: 0.688rem; /* 11px */
     color: #8B8F98;
 }
-@media (max-width: 50rem) { /* 800px */
-    .footer__top { grid-template-columns: 1fr 1fr; height:100%; padding-bottom: 1rem; }
-    .footer__top > *:nth-child(3) {margin-top: 2rem; grid-column: 1/-1; }
-    .footer__wordmark {width:100%; grid-column: 1/-1; text-align: left; margin-top: 6rem; } /* 20px */
-    .footer__bottom {padding-top:0;} /* 20px */
+@media (max-width: 50rem) { /* 800px 이하 모바일/태블릿 */
+    .footer__top {
+        display: flex;
+        flex-direction: column; /* 세로로 배치 */
+        height: 100%;
+        padding-bottom: 1rem;
+    }
+    .footer__labels {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem 1rem;
+        width: 100%;
+    }
+    /* 03 / SOCIAL 항목을 아래 줄 전체(2열 차지)로 변경 */
+    .footer__labels > *:nth-child(3) {
+        grid-column: 1 / -1;
+    }
+    .footer__wordmark {
+        width: 100%;
+        text-align: left;
+        margin-top: 6rem;
+        display: block;
+    }
+    .footer__bottom {
+        padding-top: 0;
+    }
 }
 
 /* ============ Fixed FAB ============ */
