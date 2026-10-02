@@ -19,11 +19,7 @@
 
     color-scheme: light;
 }
-/* ============ 모바일 반응형 ============ */
-@media (max-width: 50rem){
-    :root{ --edge: 15px; --margin-btm:40px;}
-    main{ gap: 4.375rem; /* 70px */}
-}
+
 /* ============ Dark Mode ============ */
 html[data-theme="dark"] {
     --paper: #14161B;
@@ -39,10 +35,7 @@ html[data-theme="dark"] {
 * {
     box-sizing: border-box;
 }
-html, body{
-    overflow-x: hidden;
-    max-width: 100vw;
-}
+
 html {
     scroll-behavior: smooth;
 }
@@ -67,7 +60,15 @@ main {
     flex-direction: column;
     gap: 8.125rem; /* 130px */
 }
-
+/* ============ 모바일 반응형 ============ */
+@media (max-width: 50rem){
+    :root{ --edge: 15px; --margin-btm:40px;}
+    main{ gap: 4.375rem; /* 70px */}
+    html, body{
+    overflow-x: hidden;
+    max-width: 100vw;
+    }
+}
 /* ============ Header ============ */
 .nav {
     position: fixed;
@@ -303,15 +304,25 @@ main {
     display: flex;
     width: 100%;
     min-width: 0;
-    overflow-x: auto;
+    gap: 0.875rem; /* 14px */
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y:auto;
+    overflow-y: hidden;
+}
+.bestsellers-swiper{
+    cursor: grab;
+}
+.bestsellers-swiper.is-dragging{
+    cursor: grabbing;
+    scroll-snap-type: none;   /* 드래그 중엔 스냅이 손맛을 방해하므로 잠깐 꺼둠 */
+    scroll-behavior: auto;    /* smooth가 걸려있으면 드래그 중 버벅임 */
 }
 .bestsellers-swiper::-webkit-scrollbar{ display: none; }
 
 .bs-page{
-    flex: 0 0 100%;
+    flex: 0 0 calc(100% - 0.875rem); /* 14px */
     min-width: 0;
     scroll-snap-align: start;
     display: grid;
@@ -588,7 +599,7 @@ main {
     .discover__feature {
     background-size: contain;
     aspect-ratio: 402 / 520 !important;
-    width: 100%; height: 80vh;
+    width: 100%; height: 75vh;
     position: static;
     top: 1.25rem;
     }

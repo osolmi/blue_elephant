@@ -214,7 +214,58 @@ function initBestsellerTabs() {
     });
   });
 }
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. 웹사이트 전체 dragstart 이벤트 차단 (고스트 이미지 방지)
+    document.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+    });
 
+    const swiper = document.querySelector('.bestsellers-swiper');
+    if (!swiper) return;
+
+    let isMouseDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    // 마우스 커서 스타일 지정
+    swiper.style.cursor = 'grab';
+
+    // 마우스 누름 (드래그 시작)
+    swiper.addEventListener('mousedown', (e) => {
+        isMouseDown = true;
+        swiper.style.cursor = 'grabbing';
+        
+        // 드래그 중 부드러운 반응을 위해 scroll-behavior 및 snap 잠시 해제
+        swiper.style.scrollBehavior = 'auto';
+        swiper.style.scrollSnapType = 'none';
+
+        startX = e.pageX - swiper.offsetLeft;
+        scrollLeft = swiper.scrollLeft;
+    });
+
+    // 마우스 이동 (드래그 중)
+    window.addEventListener('mousemove', (e) => {
+        if (!isMouseDown) return;
+        e.preventDefault();
+
+        const x = e.pageX - swiper.offsetLeft;
+        const walk = (x - startX) * 1.5; // 드래그 감도 조절 (1.5배)
+        swiper.scrollLeft = scrollLeft - walk;
+    });
+
+    // 마우스 뗌 또는 영역 이탈 (드래그 종료)
+    const stopDragging = () => {
+        if (!isMouseDown) return;
+        isMouseDown = false;
+        swiper.style.cursor = 'grab';
+
+        // 원래 복원 (스냅 효과 재활성화)
+        swiper.style.scrollBehavior = 'smooth';
+        swiper.style.scrollSnapType = 'x mandatory';
+    };
+
+    window.addEventListener('mouseup', stopDragging);
+});
   /* ==========================================================
     5. 컬렉션(discover) 섹션 카테고리 탭 — 상품 리스트 전환
   ========================================================== */

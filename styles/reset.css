@@ -17,7 +17,12 @@ table,thead,tbody,tfoot,tr,td,th {
     color: inherit; /* 부모/상위 요소의 color 변수를 상속받도록 수정 */
     font-family: inherit; /* 부모/body의 font-family(Chivo Mono)를 상속받도록 수정 */
 }
-
+img, a {
+    -webkit-user-drag: none;
+    user-drag: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
 /* 개별 태그 초기값 */
 a { text-decoration: none; }
 ul, ol, li { list-style: none; }
